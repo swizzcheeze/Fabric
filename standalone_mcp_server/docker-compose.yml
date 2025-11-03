@@ -1,0 +1,7 @@
+services:
+  mcp-server:
+    build: .
+    ports:
+      - "3333:3333"
+    environment:
+      - LM_STUDIO_ENDPOINT=http://host.docker.internal:1234/v1/chat/completions
