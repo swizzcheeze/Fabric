@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -63,7 +62,7 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 func listPatterns(w http.ResponseWriter, r *http.Request) {
 	patternsDir := "./patterns"
-	files, err := ioutil.ReadDir(patternsDir)
+	files, err := os.ReadDir(patternsDir)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -94,7 +93,7 @@ func executePattern(w http.ResponseWriter, r *http.Request, patternName string) 
 		return
 	}
 
-	systemContent, err := ioutil.ReadFile(systemFile)
+	systemContent, err := os.ReadFile(systemFile)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
